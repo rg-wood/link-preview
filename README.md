@@ -2,7 +2,7 @@
 
 Custom element to hover link previews.
 
-**[Demo](https://daviddarnes.github.io/component-template/demo.html)**
+**[Demo](https://rg-wood.github.io/link-preview/demo.html)**
 
 ## Usage
 
