@@ -1,0 +1,24 @@
+name: Publish Demo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy_pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm run build:docs
+
+      - run: touch docs/.nojekyll
+      - name: Deploy docs 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          folder: docs
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages

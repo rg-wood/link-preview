@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/link-preview.js --bundle --minify --sourcemap=external --outfile=link-preview.js",
+    "build:docs": "npm run build && mkdir docs && cp link-preview.js index.html docs/",
+    "lint": "npx prettier . --check && lit-analyzer src",
+    "lint:fix": "npx prettier . --write",
     "start": "npx http-server ."
   },
   "repository": {
@@ -37,5 +40,9 @@
     "lit": "^3.1.4"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "globals": "^15.8.0",
+    "lit-analyzer": "^2.0.3",
+    "prettier": "^3.3.3"
   }
 }
