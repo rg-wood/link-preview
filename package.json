@@ -40,7 +40,7 @@
     "lit": "^3.1.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "esbuild": "^0.23.0",
     "globals": "^15.8.0",
     "lit-analyzer": "^2.0.3",
     "prettier": "^3.3.3"
