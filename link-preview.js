@@ -29,6 +29,7 @@ class LinkPreview extends HTMLElement {
       this._popup = document.createElement('div')
       this._popup.hidden = true
       this._popup.style.cssText = LinkPreview.popupStyle
+      this._popup.setAttribute("part", "popup")
     }
     return this._popup
   }
