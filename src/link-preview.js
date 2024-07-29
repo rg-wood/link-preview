@@ -4,7 +4,23 @@ import { until } from 'lit-html/directives/until.js'
 import '@lion/ui/define/lion-tooltip.js'
 
 class LinkPreview extends LitElement {
-  static Headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+  static HtmlHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+
+  static subheadingSelectorsFor(hash) {
+    return [
+      ...LinkPreview.HtmlHeadings.map(h => `${hash} ${h}`),
+      ...LinkPreview.HtmlHeadings.map(h => `${h}${hash}`)
+    ]
+  }
+
+  static FirstContentSelectors = LinkPreview.HtmlHeadings.map(h => `${h}+*`)
+
+  static firstContentSelectorsForSubheading(hash) {
+    return [
+      ...LinkPreview.HtmlHeadings.map(h => `${hash} ${h}+*`),
+      ...LinkPreview.HtmlHeadings.map(h => `${h}${hash}+*`)
+    ]
+  }
 
   static register(tagName) {
     if ('customElements' in window) {
@@ -38,37 +54,23 @@ class LinkPreview extends LitElement {
   async title() {
     const html = await this.html()
 
-    if (this.link.hash) {
-      const fragmentHeadings = LinkPreview.Headings.map(h => `${h}${this.link.hash}`).join(',')
-      const subsectionHeadings = LinkPreview.Headings.map(h => `${this.link.hash} ${h}`).join(',')
+    const selectors = this.link.hash
+      ? LinkPreview.subheadingSelectorsFor(this.link.hash)
+      : LinkPreview.HtmlHeadings
 
-      const maybeFirstTitle = html.querySelector(fragmentHeadings)
-      const firstTitle = maybeFirstTitle ? maybeFirstTitle : html.querySelector(subsectionHeadings)
-
-      return firstTitle.textContent
-    }
-
-    const headings = LinkPreview.Headings.join(',')
-    return html.querySelector(headings).textContent
+    const heading = html.querySelector(selectors.join(','))
+    if (heading) return heading.textContent
   }
 
   async description() {
     const html = await this.html()
 
-    if (this.link.hash) {
-      const fragments = LinkPreview.Headings.map(h => `${h}${this.link.hash}+*`).join(',')
-      const subsections = LinkPreview.Headings.map(h => `${this.link.hash} ${h} + *`).join(',')
+    const selectors = this.link.hash
+      ? LinkPreview.firstContentSelectorsForSubheading(this.link.hash)
+      : LinkPreview.FirstContentSelectors
 
-      const maybeFirstDescription = html.querySelector(fragments)
-      const firstDescription = maybeFirstDescription
-        ? maybeFirstDescription
-        : html.querySelector(subsections)
-
-      return firstDescription.textContent
-    }
-
-    const contents = LinkPreview.Headings.map(h => `${h}+*`).join(',')
-    return html.querySelector(contents).textContent
+    const firstContent = html.querySelector(selectors.join(','))
+    if (firstContent) return firstContent.textContent
   }
 
   render() {
