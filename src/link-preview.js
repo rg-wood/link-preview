@@ -79,20 +79,18 @@ class LinkPreview extends LitElement {
   }
 
   render() {
-    return html`
-      <lion-tooltip>
-        <div slot="invoker">
-          <slot></slot>
-        </div>
+    return html`<lion-tooltip>
+      <div slot="invoker">
+        <slot></slot>
+      </div>
 
-        <div slot="content">
-          <div part="preview" id="preview">
-            <h2>${until(this.title())}</h2>
-            <p>${until(this.description())}</p>
-          </div>
+      <div slot="content">
+        <div part="preview" id="preview">
+          <h2>${until(this.title())}</h2>
+          <p>${until(this.description())}</p>
         </div>
-      </lion-tooltip>
-    `
+      </div>
+    </lion-tooltip>`
   }
 }
 
