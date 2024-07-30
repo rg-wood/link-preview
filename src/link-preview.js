@@ -41,8 +41,11 @@ class LinkPreview extends LitElement {
   _parser = new DOMParser()
 
   get link() {
-    this._link = new URL(this.querySelector('a').href)
-    return this._link
+    return new URL(this.querySelector('a').href)
+  }
+
+  get rawLink() {
+    return this.querySelector('a').getAttribute('href')
   }
 
   async html() {
@@ -52,24 +55,24 @@ class LinkPreview extends LitElement {
   }
 
   async title() {
-    const html = await this.html()
+    const source = this.rawLink.startsWith('#') ? document : await this.html()
 
     const selectors = this.link.hash
       ? LinkPreview.subheadingSelectorsFor(this.link.hash)
       : LinkPreview.HtmlHeadings
 
-    const heading = html.querySelector(selectors.join(','))
+    const heading = source.querySelector(selectors.join(','))
     if (heading) return heading.textContent
   }
 
   async description() {
-    const html = await this.html()
+    const source = this.rawLink.startsWith('#') ? document : await this.html()
 
     const selectors = this.link.hash
       ? LinkPreview.firstContentSelectorsForSubheading(this.link.hash)
       : LinkPreview.FirstContentSelectors
 
-    const firstContent = html.querySelector(selectors.join(','))
+    const firstContent = source.querySelector(selectors.join(','))
     if (firstContent) return firstContent.textContent
   }
 
