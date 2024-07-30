@@ -1,5 +1,5 @@
 {
-  "name": "link-preview",
+  "name": "@grislyeye/link-preview",
   "version": "0.0.0",
   "description": "Custom element to hover link previews",
   "main": "link-preview.js",
