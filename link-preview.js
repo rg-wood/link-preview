@@ -245,7 +245,7 @@
       border: 1px solid;
       background: white;
     }
-  `;_parser=new DOMParser;get link(){return this._link=new URL(this.querySelector("a").href),this._link}async html(){return fetch(this.link).then(e=>e.text()).then(e=>this._parser.parseFromString(e,"text/html"))}async title(){let e=await this.html(),t=this.link.hash?o.subheadingSelectorsFor(this.link.hash):o.HtmlHeadings,i=e.querySelector(t.join(","));if(i)return i.textContent}async description(){let e=await this.html(),t=this.link.hash?o.firstContentSelectorsForSubheading(this.link.hash):o.FirstContentSelectors,i=e.querySelector(t.join(","));if(i)return i.textContent}render(){return Re`
+  `;_parser=new DOMParser;get link(){return new URL(this.querySelector("a").href)}get rawLink(){return this.querySelector("a").getAttribute("href")}async html(){return fetch(this.link).then(e=>e.text()).then(e=>this._parser.parseFromString(e,"text/html"))}async title(){let e=this.rawLink.startsWith("#")?document:await this.html(),t=this.link.hash?o.subheadingSelectorsFor(this.link.hash):o.HtmlHeadings,i=e.querySelector(t.join(","));if(i)return i.textContent}async description(){let e=this.rawLink.startsWith("#")?document:await this.html(),t=this.link.hash?o.firstContentSelectorsForSubheading(this.link.hash):o.FirstContentSelectors,i=e.querySelector(t.join(","));if(i)return i.textContent}render(){return Re`
       <lion-tooltip>
         <div slot="invoker">
           <slot></slot>
