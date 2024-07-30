@@ -55,7 +55,7 @@ We do not recommend using `<link-previews>` for external links.
 ### Styling
 
 `<link-preview>` exposes CSS custom properties and shadow parts that can be used to style the
-document index.
+preview tooltip.
 
 Supports the following
 [shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts):
