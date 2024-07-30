@@ -9,7 +9,9 @@ Custom element to hover link previews.
 Include the `<script>` in your markup:
 
 ```html
-<script type="module" src="https://www.unpkg.com/@grislyeye/link-preview@0.0.0/link-preview.js"></script>
+<script
+  type="module"
+  src="https://www.unpkg.com/@grislyeye/link-preview@0.0.0/link-preview.js"></script>
 ```
 
 Or, if you host the script as part of your project (recommended):
