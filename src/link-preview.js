@@ -35,6 +35,8 @@ class LinkPreview extends LitElement {
       overflow: hidden;
       border: 1px solid;
       background: white;
+      padding-left: 1em;
+      padding-right: 1em;
     }
   `
 
