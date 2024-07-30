@@ -51,3 +51,25 @@ Previews for external links are limited. You can only do so for pages with suita
 ```
 
 We do not recommend using `<link-previews>` for external links.
+
+### Styling
+
+`<link-preview>` exposes CSS custom properties and shadow parts that can be used to style the
+document index.
+
+Supports the following
+[shadow parts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_shadow_parts):
+
+| Part      | Description                                                                              |
+| --------- | ---------------------------------------------------------------------------------------- |
+| `preview` | The preview content container. You can use this to change the preview border style, etc. |
+
+For example:
+
+```css
+link-preview::part(preview) {
+  border: none;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+```
