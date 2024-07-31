@@ -1,4 +1,4 @@
-# `<link-preview>` [![Test](https://github.com/rg-wood/link-preview/actions/workflows/test.yml/badge.svg)](https://github.com/rg-wood/link-preview/actions/workflows/test.yml)
+# `<link-preview>` [![Test](https://github.com/rg-wood/link-preview/actions/workflows/test.yml/badge.svg)](https://github.com/rg-wood/link-preview/actions/workflows/test.yml)
 
 Custom element to hover link previews.
 
