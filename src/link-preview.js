@@ -13,8 +13,6 @@ class LinkPreview extends LitElement {
     ]
   }
 
-  static FirstContentSelectors = LinkPreview.HtmlHeadings.map(h => `${h}+*`)
-
   static firstContentSelectorsForSubheading(hash) {
     return [
       ...LinkPreview.HtmlHeadings.map(h => `${hash} ${h}+*`),
