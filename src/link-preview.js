@@ -56,23 +56,26 @@ class LinkPreview extends LitElement {
       .then(html => this._parser.parseFromString(html, 'text/html'))
   }
 
-  async title() {
+  async heading() {
     const source = this.rawLink.startsWith('#') ? document : await this.html()
 
-    const selectors = this.link.hash
-      ? LinkPreview.subheadingSelectorsFor(this.link.hash)
-      : LinkPreview.HtmlHeadings
+    return this.link.hash
+      ? source.querySelector(LinkPreview.subheadingSelectorsFor(this.link.hash).join(','))
+      : Array.from(source.querySelectorAll(LinkPreview.HtmlHeadings)).sort(byTagName)[0]
+  }
 
-    const heading = source.querySelector(selectors.join(','))
+  async title() {
+    const heading = await this.heading()
     if (heading) return heading.textContent
   }
 
   async description() {
     const source = this.rawLink.startsWith('#') ? document : await this.html()
+    const heading = await this.heading()
 
     const selectors = this.link.hash
       ? LinkPreview.firstContentSelectorsForSubheading(this.link.hash)
-      : LinkPreview.FirstContentSelectors
+      : [`${heading ? heading.tagName : 'h1'}+*`]
 
     const firstContent = source.querySelector(selectors.join(','))
     if (firstContent) return firstContent.textContent
@@ -95,3 +98,7 @@ class LinkPreview extends LitElement {
 }
 
 LinkPreview.register()
+
+function byTagName(a, b) {
+  return a.tagName.localeCompare(b.tagName)
+}
