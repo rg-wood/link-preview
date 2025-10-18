@@ -73,7 +73,7 @@ class LinkPreview extends LitElement {
 
     const selectors = this.link.hash
       ? LinkPreview.firstContentSelectorsForSubheading(this.link.hash)
-      : [`${heading ? heading.tagName : 'h1'}+*`]
+      : [`${heading ? heading.tagName : 'h1'} ~ *:not(:empty)`]
 
     const firstContent = source.querySelector(selectors.join(','))
     if (firstContent) return firstContent.textContent
