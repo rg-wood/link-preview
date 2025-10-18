@@ -36,13 +36,13 @@
   },
   "homepage": "https://github.com/rg-wood/link-preview#readme",
   "dependencies": {
-    "@lion/ui": "^0.7.5",
-    "lit": "^3.1.4"
+    "@lion/ui": "^0.15.1",
+    "lit": "^3.3.1"
   },
   "devDependencies": {
-    "esbuild": "^0.23.0",
-    "globals": "^15.8.0",
+    "esbuild": "^0.25.11",
+    "globals": "^16.4.0",
     "lit-analyzer": "^2.0.3",
-    "prettier": "^3.3.3"
+    "prettier": "^3.6.2"
   }
 }
